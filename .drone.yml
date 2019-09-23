@@ -1,0 +1,21 @@
+---
+kind: "pipeline"
+name: "container"
+
+steps:
+  - name: "container"
+    image: "plugins/docker"
+    settings:
+      registry: "quay.io"
+      repo: "quay.io/littlemanco/git-crypt"
+      username:
+        from_secret: "DOCKER_USERNAME"
+      password:
+        from_secret: "DOCKER_PASSWORD"
+        
+trigger:
+  branch:
+    - master
+  event:
+    - push
+
